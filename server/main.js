@@ -10,7 +10,7 @@ const port = 3000;
 
 app.use('/', express.static(path.join(__dirname, './../public')));
 app.get('/hello', (req,res) => {
-    return res.send('Hello Codelab');
+    return res.send('Hello CodelAAab');
 });
 app.listen(port, () => {
     console.log('server on',port);
