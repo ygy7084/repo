@@ -2,7 +2,7 @@
  * Created by Administrator on 2016-12-12.
  */
 var webpack = require('webpack');
-
+var path = require('path');
 module.exports = {
 
     /* webpack-dev-server를 콘솔이 아닌 자바스크립트로 실행 할 땐,
@@ -12,16 +12,14 @@ module.exports = {
     entry: [
         './src/index.js',
         'webpack-dev-server/client?http://0.0.0.0:4000', // 개발서버의 포트가 이 부분에 입력되어야 제대로 작동합니다
-        'webpack/hot/only-dev-server'
+        'webpack/hot/only-dev-server',
+        './src/style.css'
     ],
-
-    output: {
+     output: {
         path: '/', // public 이 아니고 /, 이렇게 하면 파일을 메모리에 저장하고 사용합니다
         filename: 'bundle.js'
     },
-
-    // 개발서버 설정입니다
-    devServer: {
+     devServer: {
         hot: true,
         filename: 'bundle.js',
         publicPath: '/',
@@ -57,9 +55,14 @@ module.exports = {
                     presets: ['es2015', 'react']
                 })],
                 exclude: /node_modules/
+            },
+            {
+                test:/\.css$/,
+                loader: 'style!css-loader'
             }
         ]
+    },
+    resolve : {
+        root: path.resolve('./src')
     }
-
-
 };
